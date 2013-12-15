@@ -1,0 +1,7 @@
+Bool : * = \/ a:* . a->a->a;
+True : Bool = /\ a:* . \ x:a . \ y:a . x;
+False : Bool = /\ a:* . \ x:a . \ y:a . y;
+if (a:*) (b:Bool) (t:a) (f:a) : a = b a t f;
+not (b : Bool) : Bool = if Bool b False True;
+and (x : Bool) (y : Bool) : Bool = if Bool x y False;
+or (x : Bool) (y : Bool) : Bool = if Bool x True y;

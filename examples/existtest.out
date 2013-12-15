@@ -1,0 +1,60 @@
+let Bool:* = (a:*)->a->a->a;
+    True:Bool = \a:*. \x:a. \y:a. x;
+    False:Bool = \a:*. \x:a. \y:a. y;
+    if:(a:*)->Bool->a->a->a = \a:*. \b:Bool. \t:a. \f:a. b a t f;
+    not:Bool->Bool = \b:Bool. if Bool b False True;
+    and:Bool->Bool->Bool = \x:Bool. \y:Bool. if Bool x y False;
+    or:Bool->Bool->Bool = \x:Bool. \y:Bool. if Bool x True y;
+    Integer:*;
+    0:Integer;
+    1:Integer;
+    2:Integer;
+    3:Integer;
+    primIntegerAdd:Integer->Integer->Integer;
+    primIntegerSub:Integer->Integer->Integer;
+    primIntegerMul:Integer->Integer->Integer;
+    primIntegerDiv:Integer->Integer->Integer;
+    primIntegerEq:Integer->Integer->Bool;
+    id:(a:*)->a->a = \a:*. \x:a. x;
+    const:(a:*)->(b:*)->a->b->a = \a:*. \b:*. \x:a. \y:b. x;
+    Exists:(a:*)->(a->*)->* = \a:*. \P:a->*. (r:*)->((x:a)->P x->r)->r;
+    pack:(a:*)->(P:a->*)->(x:a)->P x->Exists a P =
+        \a:*. \P:a->*. \x:a. \q:P x. \r:*. \f:(y:a)->P y->r. f x q;
+    unpack:(a:*)->(P:a->*)->(r:*)->((x:a)->P x->r)->Exists a P->r =
+        \a:*. \P:a->*. \r:*. \f:(x:a)->P x->r. \e:Exists a P. e r f;
+    fstE:(a:*)->(P:a->*)->Exists a P->a =
+        \a:*. \P:a->*. \e:Exists a P. unpack a P a (\y:a. \q:P y. y) e;
+    List:*->* = \e:*. (a:*)->(e->a->a)->a->a;
+    nil:(e:*)->List e = \e:*. \a:*. \c:e->a->a. \n:a. n;
+    cons:(e:*)->e->List e->List e =
+        \e:*. \x:e. \xs:List e. \a:*. \c:e->a->a. \n:a. c x (xs a c n);
+    foldr:(a:*)->(b:*)->(a->b->b)->b->List a->b =
+        \a:*. \b:*. \f:a->b->b. \z:b. \xs:List a. xs b f z;
+    map:(a:*)->(b:*)->(a->b)->List a->List b =
+        \a:*.
+        \b:*.
+        \f:a->b.
+        \xs:List a.
+        foldr a (List b) (\x:a. \r:List b. cons b (f x) r) (nil b) xs;
+    tId:*->* = \t:*. t->t;
+    t:* = Exists * tId;
+    e1:t = pack * tId Integer (id Integer);
+    e2:t = pack * tId Bool not;
+    l:List t = cons t e1 (cons t e2 (nil t));
+    tl:List * = map t * (fstE * tId) l
+in  *
+
+ : (Integer:*)->Integer->Integer->Integer->Integer->(Integer->Integer->Integer)->(Integer->Integer->Integer)->(Integer->Integer->Integer)->(Integer->Integer->Integer)->(Integer->Integer->(a:*)->a->a->a)->*
+ = 
+\Integer:*.
+\0:Integer.
+\1:Integer.
+\2:Integer.
+\3:Integer.
+\primIntegerAdd:Integer->Integer->Integer.
+\primIntegerSub:Integer->Integer->Integer.
+\primIntegerMul:Integer->Integer->Integer.
+\primIntegerDiv:Integer->Integer->Integer.
+\primIntegerEq:Integer->Integer->(a:*)->a->a->a. *
+ === 
+*

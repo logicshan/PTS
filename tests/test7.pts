@@ -1,0 +1,7 @@
+-- A simple example
+\ Int : * .
+\ 5 : Int .
+let id (a:*) (x:a) : a = x;	-- identity
+    int : * = Int;
+    five : int = let v : int = 5 in id int v
+in  id (int->int) (id int) five

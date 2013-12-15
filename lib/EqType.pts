@@ -1,0 +1,9 @@
+-- Type equality
+EqType (s:*) (t:*) : * = \/ T:*->* . T s-> T t;
+reflEqType (s:*) : EqType s s = /\T:*->* . \x:T s.x;
+symmEqType (s:*) (t:*) (eq:EqType s t) : EqType t s = eq (\ x:* . EqType x s) (reflEqType s);
+transEqType (s:*) (t:*) (u:*) (st:EqType s t) (tu:EqType t u): EqType s u = tu (\ x:* . EqType s x) st;
+
+-- Some utilities for conversion given a proof.
+conv (s:*) (t:*) (T:*->*) (eq:EqType s t) : T s-> T t = eq T;
+vnoc (s:*) (t:*) (T:*->*) (eq:EqType s t) : T t-> T s = (symmEqType s t eq) T;

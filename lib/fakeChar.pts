@@ -1,0 +1,4 @@
+Char : *;
+'a' : Char;
+'b' : Char;
+'c' : Char;

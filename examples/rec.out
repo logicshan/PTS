@@ -1,0 +1,65 @@
+let Bool:* = (a:*)->a->a->a;
+    True:Bool = \a:*. \x:a. \y:a. x;
+    False:Bool = \a:*. \x:a. \y:a. y;
+    if:(a:*)->Bool->a->a->a = \a:*. \b:Bool. \t:a. \f:a. b a t f;
+    not:Bool->Bool = \b:Bool. if Bool b False True;
+    and:Bool->Bool->Bool = \x:Bool. \y:Bool. if Bool x y False;
+    or:Bool->Bool->Bool = \x:Bool. \y:Bool. if Bool x True y;
+    Integer:*;
+    0:Integer;
+    1:Integer;
+    2:Integer;
+    3:Integer;
+    primIntegerAdd:Integer->Integer->Integer;
+    primIntegerSub:Integer->Integer->Integer;
+    primIntegerMul:Integer->Integer->Integer;
+    primIntegerDiv:Integer->Integer->Integer;
+    primIntegerEq:Integer->Integer->Bool;
+    Either:*->*->* = \a:*. \b:*. (r:*)->(a->r)->(b->r)->r;
+    Left:(a:*)->(b:*)->a->Either a b =
+        \a:*. \b:*. \x:a. \r:*. \left:a->r. \right:b->r. left x;
+    Right:(a:*)->(b:*)->b->Either a b =
+        \a:*. \b:*. \y:b. \r:*. \left:a->r. \right:b->r. right y;
+    either:(a:*)->(b:*)->(r:*)->Either a b->(a->r)->(b->r)->r =
+        \a:*.
+        \b:*. \r:*. \s:Either a b. \left:a->r. \right:b->r. s r left right;
+    Pair:*->*->* = \a:*. \b:*. (c:*)->(a->b->c)->c;
+    pair:(a:*)->(b:*)->a->b->Pair a b =
+        \a:*. \b:*. \x:a. \y:b. \c:*. \f:a->b->c. f x y;
+    split:(a:*)->(b:*)->(r:*)->(a->b->r)->Pair a b->r =
+        \a:*. \b:*. \r:*. \f:a->b->r. \p:Pair a b. p r f;
+    fst:(a:*)->(b:*)->Pair a b->a =
+        \a:*. \b:*. \p:Pair a b. split a b a (\x:a. \y:b. x) p;
+    snd:(a:*)->(b:*)->Pair a b->b =
+        \a:*. \b:*. \p:Pair a b. split a b b (\x:a. \y:b. y) p;
+    Unit:* = (r:*)->r->r;
+    unit:Unit = \r:*. \x:r. x;
+    fix:(a:*)->(a->a)->a;
+    sumFromTo:Integer->Integer->Integer =
+        \l:Integer.
+        \h:Integer.
+        fix (Integer->Integer) (\f:Integer->Integer.
+                                \i:Integer.
+                                if Integer (primIntegerEq i h) i (primIntegerAdd i (f (primIntegerAdd i 1)))) l;
+    List1:*->*->* = \a:*. \l:*. Either Unit (Pair a l);
+    List:*->* = \a:*. fix * (List1 a)
+in  sumFromTo 0 3
+
+ : (Integer:*)->Integer->Integer->Integer->Integer->(Integer->Integer->Integer)->(Integer->Integer->Integer)->(Integer->Integer->Integer)->(Integer->Integer->Integer)->(Integer->Integer->(a:*)->a->a->a)->((a:*)->(a->a)->a)->Integer
+ = 
+\Integer:*.
+\0:Integer.
+\1:Integer.
+\2:Integer.
+\3:Integer.
+\primIntegerAdd:Integer->Integer->Integer.
+\primIntegerSub:Integer->Integer->Integer.
+\primIntegerMul:Integer->Integer->Integer.
+\primIntegerDiv:Integer->Integer->Integer.
+\primIntegerEq:Integer->Integer->(a:*)->a->a->a.
+\fix:(a:*)->(a->a)->a.
+fix (Integer->Integer) (\f:Integer->Integer.
+                        \i:Integer.
+                        primIntegerEq i 3 Integer i (primIntegerAdd i (f (primIntegerAdd i 1)))) 0
+ === 
+6

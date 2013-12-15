@@ -1,0 +1,17 @@
+PTS *:* (*,*,*);
+let
+#   include <bool.pts>
+#   include <primInteger.pts>
+#   include <sum.pts>
+#   include <pair.pts>
+#   include <unit.pts>
+#   include <fix.pts>
+
+    sumFromTo (l:Integer) (h:Integer) : Integer = fix (Integer->Integer) (\f:Integer->Integer.\i:Integer.
+        if Integer (primIntegerEq i h) i (primIntegerAdd i (f (primIntegerAdd i 1)))) l;
+
+    List1 (a:*) (l:*) : * = Either Unit (Pair a l);
+
+    List (a:*) : * = fix * (List1 a);
+
+in  sumFromTo 0 3

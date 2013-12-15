@@ -1,0 +1,5 @@
+\ Int : * .
+\ 5 : Int .
+let id : \/a:* . a->a = /\a:*. \x:a. x;
+    int : * = Int
+in  id (int->int) (id int) 5

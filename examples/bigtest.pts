@@ -1,0 +1,18 @@
+let
+#   include <bool.pts>
+#   include <primInteger.pts>
+#   include <misc.pts>
+#   include <pair.pts>
+#   include <nat.pts>
+#   include <list.pts>
+#   include <sum.pts>
+#   include <void.pts>
+
+   toInteger (n:Nat) : Integer = if Integer (isZero n) 0 (
+		      if Integer (isZero (pred n)) 1 (
+                      if Integer (isZero (pred (pred n))) 2 (
+                      if Integer (isZero (pred (pred (pred n)))) 3 0)));
+
+   l : List Nat = cons Nat one (cons Nat two (nil Nat));
+   sum (xs : List Nat) : Nat = foldr Nat Nat add zero xs;
+in toInteger (sum l)

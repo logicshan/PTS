@@ -1,0 +1,100 @@
+#include <bool.pts>
+#include <primInteger.pts>
+#include <pair.pts>
+#include <list.pts>
+#include <existsT.pts>
+#include <EqType.pts>
+
+-- Naming:
+--   class C        --->  Class_C		class type
+--                        mkInstance_C_T	instance creation
+--                        sel_m1 ...		method selectors
+--   instance C T   --->  instance_C_T
+
+----- Class Eq -----
+--
+-- class Eq e where
+--    (==) :: e -> e -> Bool
+--    (/=) :: e -> e -> Bool
+--
+Class_Eq (e:*) : * = \/ r:* . ((eq:e->e->Bool) -> (ne:e->e->Bool) -> r) -> r;
+mkInstance_Eq (e:*) (eq:e->e->Bool) (ne:e->e->Bool) : Class_Eq e =
+    /\ r:* . \ f:((e->e->Bool)->(e->e->Bool)->r) . f eq ne;
+sel_eq (e:*) (dict : Class_Eq e) : e->e->Bool =
+    dict (e->e->Bool) (\ eq:e->e->Bool . \ ne:e->e->Bool . eq);
+
+----- instance Eq Integer -----
+instance_Eq_Integer : Class_Eq Integer =
+  mkInstance_Eq Integer primIntegerEq (\ x:Integer . \ y:Integer . not (primIntegerEq x y));
+
+----- elem -----
+elem (e : *) (dict_Eq : Class_Eq e) (y : e) (xs:List e) : Bool =
+    foldr e Bool (\ x:e . \ r:Bool . or (sel_eq e dict_Eq x y) r) False xs;
+
+-------
+
+----- class Collects -----
+--
+-- class Collects c where
+--    type Elem c
+--    empty :: c
+--    insert :: Elem c -> c -> c
+--    toList :: c -> [Elem c]
+--
+-- Encoded in two steps:
+-- class BareCollects c elem where
+--    empty :: c
+--    insert :: elem -> c -> c
+--    toList :: c -> [elem]
+-- and then this record is wrapped in an existential.
+--
+Class_BareCollects (c:*) (Elem:*) : * = \/ r:* . ((empty:c) ->
+						 (insert:Elem->c->c) ->
+						 (toList:c -> List Elem)->
+						 r) -> r;
+mkInstance_BareCollects (c:*) (Elem:*)
+	(empty:c) (insert:Elem->c->c) (toList:c->List Elem): Class_BareCollects c Elem =
+	/\ r:* . \ f : (c -> (Elem->c->c) -> (c->List Elem) -> r) . f empty insert toList;
+sel_empty (c:*) (Elem:*) (dict:Class_BareCollects c Elem) : c =
+   dict c ( \ empty:c . \ insert:Elem->c->c . \ toList:c->List Elem . empty);
+sel_insert (c:*) (Elem:*) (dict:Class_BareCollects c Elem) : (Elem->c->c) =
+   dict (Elem->c->c) ( \ empty:c . \ insert:Elem->c->c . \ toList:c->List Elem . insert);
+sel_toList (c:*) (Elem:*) (dict:Class_BareCollects c Elem) : (c->List Elem) =
+   dict (c->List Elem) ( \ empty:c . \ insert:Elem->c->c . \ toList:c->List Elem . toList);
+
+ClassCollects (c:*) : * = Exists (Class_BareCollects c);
+mkInstanceCollects (c:*) (Elem:*) (empty:c) (insert:Elem->c->c) (toList:c->List Elem) : ClassCollects c =
+   pack (Class_BareCollects c) Elem (mkInstance_BareCollects c Elem empty insert toList);
+
+-- Only with *:*
+sel_Elem (c:*) (dict : ClassCollects c) : * = fstE (Class_BareCollects c) dict;
+
+sel_dict_BareCollects (c:*) (dict : ClassCollects c) : Class_BareCollects c (sel_Elem c dict) =
+    sndE (Class_BareCollects c) dict;
+
+
+----- instance (Eq e) => Collects [e] -----
+--
+-- instance (Eq e) => Collects [e] where
+--    type Elem [e] = e
+--    empty = []
+--    insert x xs = if x `elem` xs then xs else x : xs
+--    toList xs = xs
+--
+
+listInsert (e : *) (dict_Eq : Class_Eq e) (x : e) (xs : List e) : List e =
+    if (List e) (elem e dict_Eq x xs) xs (cons e x xs);
+
+instance_Collects_List (e : *) (dict_Eq : Class_Eq e) : ClassCollects (List e) =
+    mkInstanceCollects (List e) e (nil e) (listInsert e dict_Eq) (\ xs : List e . xs);
+
+
+----- sum -----
+sum (xs:List Integer) : Integer = foldr Integer Integer primIntegerAdd 0 xs;
+
+----- sumColl -----
+sumColl (c:*) (dict:ClassCollects c) (eqT:EqType (sel_Elem c dict) Integer) (co:c) : Integer =
+    let Elem : * = sel_Elem c dict;
+	dictB : Class_BareCollects c Elem = sel_dict_BareCollects c dict
+    in  sum (conv Elem Integer List eqT (sel_toList c Elem dictB co));
+

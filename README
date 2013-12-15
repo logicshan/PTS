@@ -1,0 +1,73 @@
+This is a simple Pure Type System calculator.
+
+It reads an expression from standard input, and prints three things:
+the original expressions,
+the type of the expression,
+the normal form of the expression.
+
+To build the PTS program do
+	make
+
+To run a few tests do
+	make tests
+
+The syntax of pure type systems is very simple.  There are only five
+language constructs.  To make programs more readable alternate
+syntactic constructs are often possible.
+
+Construct      Normal syntax       Alternatives
+---------      -------------       ------------
+Forall         (x:t) -> e          |~| x:t . e      \/ x:t . e
+Lambda         \ x:t -> e          /\ x:t . e
+Application    f e
+Variable       v
+Kind           *v
+
+Variables consist of alpha-numeric characters.
+
+
+Syntactic sugar
+---------------
+let f (x1:t1) ... (nx:tn) : t = e        --->   (\ f: (x1:t1)-> ... (xn:tn)->t . b)
+in  b                                           (\ x1:t1 . ... \ xn:tn . e)
+
+let f (x1:t1) ... (nx:tn) : t            --->   (\ f: (x1:t1)-> ... (xn:tn)->t . b)
+in  b
+
+There may also be several bindings in a let if separated by semicolons.
+
+Comments start with -- and end at the end of the line.
+
+Example:
+
+let id (a:*) (x:a) = x
+in  id Bool True
+
+
+Picking the PTS
+---------------
+
+By default the PTS is Fw, but the kind system is programmable.
+The first line should look like this to set the PTS:
+
+PTS k1:l1 ... (s1,t1,u1) ...
+
+This means that kind k1 has kind l1 and so on.
+Furthermore, the forall rules check that the s1,t1,u1 triple is legal.
+
+Example:
+To get Fw use
+   PTS *:*BOX (*,*,*) (*BOX,*,*) (*BOX,*BOX,*BOX);
+To get CoC with *:* use
+   PTS *:* (*,*,*);
+Predicative Fw
+   PTS *:*BOX *1:*BOX1 (*,*,*) (*,*1,*1) (*1,*,*1) (*1,*1,*1) (*BOX,*,*1) (*BOX,*1,*1) (*BOX,*BOX,*BOX);
+
+Sample files
+------------
+bool.pts         Booleans
+pair.pts         Pairs
+nat.pts          Natural numbers
+list.pts         Lists
+exists.pts       Dependent pairs, a.k.a., existentials
+misc.pts         Some useful functions

@@ -1,0 +1,2 @@
+Unit : * = \/ r:* . r -> r;
+unit : Unit = /\ r:* . \ x:r . x;

@@ -1,0 +1,6 @@
+\ Int : * .
+\ 5 : Int .
+let id (a:*) (x:a) : a = x;
+    int : * = Int;
+    five : int = 5
+in  id (int->int) (id int) five

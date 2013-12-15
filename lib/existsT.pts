@@ -1,0 +1,16 @@
+Exists (P:*->*) : * = \/ r:* . (\/ x:* . (P x -> r)) -> r;
+pack (P:*->*) (x : *) (q : P x) : Exists P = /\ r:* . \ f : (\/ y:* . (P y -> r)) . f x q;
+unpack (P:*->*) (r:*) (f : (x:*)->P x->r) (e : Exists P) : r = e r f;
+
+-- Stronger elimination constants.
+-- only with *:*
+fstE (P:*->*) (e : Exists P) : * = unpack P * (/\ y:* . \ q:P y . y) e;
+
+#include "cast.pts"
+-- More powerful version of unpack that reveals first component
+-- is actually the one the second one talks about.
+-- This together with *:* probably gives rise to Girard's paradox.'
+xunpack (P:*->*) (r:*) (e : Exists P) (f : P (fstE P e)->r) : r =
+    e r (\ x:* . \ p : P x . f (CAST (P x) (P (fstE P e)) p));
+
+sndE (P:*->*) (e : Exists P) : P (fstE P e) = xunpack P (P (fstE P e)) e (\x:P (fstE P e).x);

@@ -1,0 +1,95 @@
+PTS *:* (*,*,*);
+
+-- class C a where
+--     type T a
+--     met :: T a -> a
+-- 
+-- instance C Int where
+--     type T Int = Bool
+--     met b = if b then 1 else 0
+-- 
+-- instance C Bool where
+--     type T Bool = Char
+--     met _ = True
+-- 
+-- data D a where
+--     MkD :: forall a. (C a) => a -> T a -> D a
+--
+-- ddd1 = MkD 2 False
+-- ddd2 = MkD 3 True
+-- ddd3 = MkD True 'a'
+-- 
+-- swapTs :: D a -> D a -> D a
+-- swapTs (MkD x1 y1) (MkD x2 y2) = MkD x1 y2
+--
+-- ddd4 = swapTs ddd1 ddd2
+--
+-- getA :: D a -> a
+-- getA (MkD x y) = x
+--
+-- Cannot define getTa, it would look like this
+--  getTa :: D a -> Ta
+--  getTa (MkD x y) = y
+-- but, T a cannot be used without a context, and the context
+-- is hidden existentially.
+--
+-- getMA :: D a -> a
+-- getMA (MkD x y) = met y
+
+-- class BareC a t where
+--     met :: t -> a
+let
+ #   include <EqType.pts>
+ #   include <existsT.pts>
+ #   include <bool.pts>
+ #   include <primInteger.pts>
+    Int : * = Integer;
+ #   include <fakeChar.pts>
+
+
+    Class_BareC (a:*) (T:*) : * = \/ r:* . ((met:T -> a) -> r) -> r;
+    mkInstance_BareC (a:*) (T:*) (met:T -> a) : Class_BareC a T =
+	/\ r:* . \ f : ((T -> a) -> r) . f met;
+    sel_met (a:*) (T:*) (dict:Class_BareC a T) : T -> a = dict (T->a) (\ f:T -> a . f);
+
+    Class_C (a:*) : * = Exists (Class_BareC a);
+    mkInstance_C (a:*) (T:*) (met:T -> a) : Class_C a =
+        pack (Class_BareC a) T (mkInstance_BareC a T met);
+
+    sel_T (a:*) (dict : Class_C a) : * = fstE (Class_BareC a) dict;
+    sel_dict_BareC (a:*) (dict : Class_C a) : Class_BareC a (sel_T a dict) =
+	sndE (Class_BareC a) dict;
+
+    instance_C_Int : Class_C Int = mkInstance_C Int Bool (\ b:Bool . if Int b 1 0);
+    instance_C_Bool : Class_C Bool = mkInstance_C Bool Char (\ c:Char . True);
+
+
+
+    D (a:*) : * = \/ r:* . ((dct:Class_C a) -> a -> sel_T a dct -> r) -> r;
+    MkD (a:*) (dict:Class_C a) (x:a) (ta:sel_T a dict) : D a =
+	/\ r:* . \ f : (dct:Class_C a) -> a -> sel_T a dct -> r . f dict x ta;
+
+    ddd1 : D Int = MkD Int instance_C_Int 2 False;
+    ddd2 : D Int = MkD Int instance_C_Int 3 True;
+    ddd3 : D Bool = MkD Bool instance_C_Bool True 'a';
+
+
+    swapTs (a:*) (d1:D a) (d2:D a) : D a =
+	d1 (D a) (\ dict1:Class_C a . \ x1:a . \ y1:sel_T a dict1 . 
+	d2 (D a) (\ dict2:Class_C a . \ x2:a . \ y2:sel_T a dict2 .
+	MkD a dict2 x1 y2
+	));
+
+    ddd4 : D Int = swapTs Int ddd1 ddd2;
+
+    getA (a:*) (d:D a) : a =
+	d a (\ dict:Class_C a . \ x:a . \ y:sel_T a dict . x);
+
+    getMA (a:*) (d:D a) : a =
+	d a (\ dict:Class_C a . \ x:a . \ y:sel_T a dict .
+	     let T : * = sel_T a dict;
+	         bdict : Class_BareC a T = sel_dict_BareC a dict
+	     in  (sel_met a T bdict) y);
+    
+
+in  getMA Int ddd4

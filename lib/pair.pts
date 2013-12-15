@@ -1,0 +1,5 @@
+Pair (a:*) (b:*) : * = \/ c:* . (a->b->c) -> c;
+pair (a:*) (b:*) (x:a) (y:b) : Pair a b = /\ c:* . \ f : a->b->c . f x y;
+split (a:*) (b:*) (r:*) (f : a->b->r) (p:Pair a b) : r = p r f;
+fst (a:*) (b:*) (p:Pair a b) : a = split a b a (\ x:a . \ y:b . x) p;
+snd (a:*) (b:*) (p:Pair a b) : b = split a b b (\ x:a . \ y:b . y) p;

@@ -1,0 +1,2 @@
+id (a:*) (x:a) : a = x;
+const (a:*) (b:*) (x:a) (y:b) : a = x;

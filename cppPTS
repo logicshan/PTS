@@ -1,0 +1,2 @@
+#! /bin/sh
+cpp -P -Ilib $1 | ./PTS

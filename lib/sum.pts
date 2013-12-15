@@ -1,0 +1,4 @@
+Either (a:*) (b:*) : * = \/ r:* . (a->r) -> (b->r) -> r;
+Left (a:*) (b:*) (x:a) : Either a b = /\ r:* . \ (left:a->r) . \ (right:b->r) . left x;
+Right (a:*) (b:*) (y:b) : Either a b = /\ r:* . \ (left:a->r) . \ (right:b->r) . right y;
+either (a:*) (b:*) (r:*) (s:Either a b) (left:a->r) (right:b->r) : r = s r left right;

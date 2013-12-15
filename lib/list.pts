@@ -1,0 +1,5 @@
+List (e:*) : * = \/ a:* . (e->a->a) -> a -> a;
+nil (e:*) : List e = /\ a:* . \ c:e->a->a . \n:a . n;
+cons (e:*) (x:e) (xs:List e) : List e = /\ a:* . \ c:e->a->a . \n:a . c x (xs a c n);
+foldr (a:*) (b:*) (f:a->b->b) (z:b) (xs:List a) : b = xs b f z;
+map (a:*) (b:*) (f:a->b) (xs:List a) : List b = foldr a (List b) (\ x:a . \ r:List b . cons b (f x) r) (nil b) xs;

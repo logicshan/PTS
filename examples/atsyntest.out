@@ -1,0 +1,178 @@
+let Bool:* = (a:*)->a->a->a;
+    True:Bool = \a:*. \x:a. \y:a. x;
+    False:Bool = \a:*. \x:a. \y:a. y;
+    if:(a:*)->Bool->a->a->a = \a:*. \b:Bool. \t:a. \f:a. b a t f;
+    not:Bool->Bool = \b:Bool. if Bool b False True;
+    and:Bool->Bool->Bool = \x:Bool. \y:Bool. if Bool x y False;
+    or:Bool->Bool->Bool = \x:Bool. \y:Bool. if Bool x True y;
+    Integer:*;
+    0:Integer;
+    1:Integer;
+    2:Integer;
+    3:Integer;
+    primIntegerAdd:Integer->Integer->Integer;
+    primIntegerSub:Integer->Integer->Integer;
+    primIntegerMul:Integer->Integer->Integer;
+    primIntegerDiv:Integer->Integer->Integer;
+    primIntegerEq:Integer->Integer->Bool;
+    Pair:*->*->* = \a:*. \b:*. (c:*)->(a->b->c)->c;
+    pair:(a:*)->(b:*)->a->b->Pair a b =
+        \a:*. \b:*. \x:a. \y:b. \c:*. \f:a->b->c. f x y;
+    split:(a:*)->(b:*)->(r:*)->(a->b->r)->Pair a b->r =
+        \a:*. \b:*. \r:*. \f:a->b->r. \p:Pair a b. p r f;
+    fst:(a:*)->(b:*)->Pair a b->a =
+        \a:*. \b:*. \p:Pair a b. split a b a (\x:a. \y:b. x) p;
+    snd:(a:*)->(b:*)->Pair a b->b =
+        \a:*. \b:*. \p:Pair a b. split a b b (\x:a. \y:b. y) p;
+    List:*->* = \e:*. (a:*)->(e->a->a)->a->a;
+    nil:(e:*)->List e = \e:*. \a:*. \c:e->a->a. \n:a. n;
+    cons:(e:*)->e->List e->List e =
+        \e:*. \x:e. \xs:List e. \a:*. \c:e->a->a. \n:a. c x (xs a c n);
+    foldr:(a:*)->(b:*)->(a->b->b)->b->List a->b =
+        \a:*. \b:*. \f:a->b->b. \z:b. \xs:List a. xs b f z;
+    map:(a:*)->(b:*)->(a->b)->List a->List b =
+        \a:*.
+        \b:*.
+        \f:a->b.
+        \xs:List a.
+        foldr a (List b) (\x:a. \r:List b. cons b (f x) r) (nil b) xs;
+    Exists:(*->*)->* = \P:*->*. (r:*)->((x:*)->P x->r)->r;
+    pack:(P:*->*)->(x:*)->P x->Exists P =
+        \P:*->*. \x:*. \q:P x. \r:*. \f:(y:*)->P y->r. f x q;
+    unpack:(P:*->*)->(r:*)->((x:*)->P x->r)->Exists P->r =
+        \P:*->*. \r:*. \f:(x:*)->P x->r. \e:Exists P. e r f;
+    fstE:(P:*->*)->Exists P->* =
+        \P:*->*. \e:Exists P. unpack P * (\y:*. \q:P y. y) e;
+    CAST:(a:*)->(b:*)->a->b;
+    xunpack:(P:*->*)->(r:*)->(e:Exists P)->(P (fstE P e)->r)->r =
+        \P:*->*.
+        \r:*.
+        \e:Exists P.
+        \f:P (fstE P e)->r.
+        e r (\x:*. \p:P x. f (CAST (P x) (P (fstE P e)) p));
+    sndE:(P:*->*)->(e:Exists P)->P (fstE P e) =
+        \P:*->*.
+        \e:Exists P. xunpack P (P (fstE P e)) e (\x:P (fstE P e). x);
+    EqType:*->*->* = \s:*. \t:*. (T:*->*)->T s->T t;
+    reflEqType:(s:*)->EqType s s = \s:*. \T:*->*. \x:T s. x;
+    symmEqType:(s:*)->(t:*)->EqType s t->EqType t s =
+        \s:*. \t:*. \eq:EqType s t. eq (\x:*. EqType x s) (reflEqType s);
+    transEqType:(s:*)->(t:*)->(u:*)->EqType s t->EqType t u->EqType s u =
+        \s:*.
+        \t:*.
+        \u:*. \st:EqType s t. \tu:EqType t u. tu (\x:*. EqType s x) st;
+    conv:(s:*)->(t:*)->(T:*->*)->EqType s t->T s->T t =
+        \s:*. \t:*. \T:*->*. \eq:EqType s t. eq T;
+    vnoc:(s:*)->(t:*)->(T:*->*)->EqType s t->T t->T s =
+        \s:*. \t:*. \T:*->*. \eq:EqType s t. symmEqType s t eq T;
+    Class_Eq:*->* =
+        \e:*. (r:*)->((eq:e->e->Bool)->(ne:e->e->Bool)->r)->r;
+    mkInstance_Eq:(e:*)->(e->e->Bool)->(e->e->Bool)->Class_Eq e =
+        \e:*.
+        \eq:e->e->Bool.
+        \ne:e->e->Bool. \r:*. \f:(e->e->Bool)->(e->e->Bool)->r. f eq ne;
+    sel_eq:(e:*)->Class_Eq e->e->e->Bool =
+        \e:*.
+        \dict:Class_Eq e.
+        dict (e->e->Bool) (\eq:e->e->Bool. \ne:e->e->Bool. eq);
+    instance_Eq_Integer:Class_Eq Integer =
+        mkInstance_Eq Integer primIntegerEq (\x:Integer.
+                                             \y:Integer. not (primIntegerEq x y));
+    elem:(e:*)->Class_Eq e->e->List e->Bool =
+        \e:*.
+        \dict_Eq:Class_Eq e.
+        \y:e.
+        \xs:List e.
+        foldr e Bool (\x:e. \r:Bool. or (sel_eq e dict_Eq x y) r) False xs;
+    Class_BareCollects:*->*->* =
+        \c:*.
+        \Elem:*.
+        (r:*)->((empty:c)->(insert:Elem->c->c)->(toList:c->List Elem)->r)->r;
+    mkInstance_BareCollects:(c:*)->(Elem:*)->c->(Elem->c->c)->(c->List Elem)->Class_BareCollects c Elem =
+        \c:*.
+        \Elem:*.
+        \empty:c.
+        \insert:Elem->c->c.
+        \toList:c->List Elem.
+        \r:*. \f:c->(Elem->c->c)->(c->List Elem)->r. f empty insert toList;
+    sel_empty:(c:*)->(Elem:*)->Class_BareCollects c Elem->c =
+        \c:*.
+        \Elem:*.
+        \dict:Class_BareCollects c Elem.
+        dict c (\empty:c. \insert:Elem->c->c. \toList:c->List Elem. empty);
+    sel_insert:(c:*)->(Elem:*)->Class_BareCollects c Elem->Elem->c->c =
+        \c:*.
+        \Elem:*.
+        \dict:Class_BareCollects c Elem.
+        dict (Elem->c->c) (\empty:c.
+                           \insert:Elem->c->c. \toList:c->List Elem. insert);
+    sel_toList:(c:*)->(Elem:*)->Class_BareCollects c Elem->c->List Elem =
+        \c:*.
+        \Elem:*.
+        \dict:Class_BareCollects c Elem.
+        dict (c->List Elem) (\empty:c.
+                             \insert:Elem->c->c. \toList:c->List Elem. toList);
+    ClassCollects:*->* = \c:*. Exists (Class_BareCollects c);
+    mkInstanceCollects:(c:*)->(Elem:*)->c->(Elem->c->c)->(c->List Elem)->ClassCollects c =
+        \c:*.
+        \Elem:*.
+        \empty:c.
+        \insert:Elem->c->c.
+        \toList:c->List Elem.
+        pack (Class_BareCollects c) Elem (mkInstance_BareCollects c Elem empty insert toList);
+    sel_Elem:(c:*)->ClassCollects c->* =
+        \c:*. \dict:ClassCollects c. fstE (Class_BareCollects c) dict;
+    sel_dict_BareCollects:(c:*)->(dict:ClassCollects c)->Class_BareCollects c (sel_Elem c dict) =
+        \c:*. \dict:ClassCollects c. sndE (Class_BareCollects c) dict;
+    listInsert:(e:*)->Class_Eq e->e->List e->List e =
+        \e:*.
+        \dict_Eq:Class_Eq e.
+        \x:e.
+        \xs:List e. if (List e) (elem e dict_Eq x xs) xs (cons e x xs);
+    instance_Collects_List:(e:*)->Class_Eq e->ClassCollects (List e) =
+        \e:*.
+        \dict_Eq:Class_Eq e.
+        mkInstanceCollects (List e) e (nil e) (listInsert e dict_Eq) (\xs:List e.
+                                                                      xs);
+    sum:List Integer->Integer =
+        \xs:List Integer. foldr Integer Integer primIntegerAdd 0 xs;
+    sumColl:(c:*)->(dict:ClassCollects c)->EqType (sel_Elem c dict) Integer->c->Integer =
+        \c:*.
+        \dict:ClassCollects c.
+        \eqT:EqType (sel_Elem c dict) Integer.
+        \co:c.
+        let Elem:* = sel_Elem c dict;
+            dictB:Class_BareCollects c Elem = sel_dict_BareCollects c dict
+        in  sum (conv Elem Integer List eqT (sel_toList c Elem dictB co));
+    singleton:(c:*)->(dictC:ClassCollects c)->sel_Elem c dictC->c =
+        \c:*.
+        \dictC:ClassCollects c.
+        \e:sel_Elem c dictC.
+        let Elem:* = sel_Elem c dictC;
+            dictB:Class_BareCollects c Elem = sel_dict_BareCollects c dictC;
+            empty:c = sel_empty c Elem dictB;
+            insert:Elem->c->c = sel_insert c Elem dictB
+        in  insert e empty;
+    LI:* = List Integer;
+    myDict:ClassCollects LI =
+        instance_Collects_List Integer instance_Eq_Integer;
+    oneListInteger:LI = singleton LI myDict 1;
+    eqInteger:EqType Integer Integer = reflEqType Integer;
+    s:Integer = sumColl LI myDict eqInteger oneListInteger
+in  s
+
+ : (Integer:*)->Integer->Integer->Integer->Integer->(Integer->Integer->Integer)->(Integer->Integer->Integer)->(Integer->Integer->Integer)->(Integer->Integer->Integer)->(Integer->Integer->(a:*)->a->a->a)->((a:*)->(b:*)->a->b)->Integer
+ = 
+\Integer:*.
+\0:Integer.
+\1:Integer.
+\2:Integer.
+\3:Integer.
+\primIntegerAdd:Integer->Integer->Integer.
+\primIntegerSub:Integer->Integer->Integer.
+\primIntegerMul:Integer->Integer->Integer.
+\primIntegerDiv:Integer->Integer->Integer.
+\primIntegerEq:Integer->Integer->(a:*)->a->a->a.
+\CAST:(a:*)->(b:*)->a->b. primIntegerAdd 1 0
+ === 
+1

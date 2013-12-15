@@ -1,0 +1,27 @@
+PTS *:*1 *#:*1#
+    (*,*,*)			-- boxed values can depend
+    (*#,*,*)			--                         on any type
+
+    (*1,*,*)			-- boxed values can depend
+    (*1#,*,*)			--			   on any type
+
+    (*1,*1,*1)			-- boxed types can depend on boxed types
+
+    (*#,*#,*#)			-- unboxed values can depend on unboxed values
+
+    (*1#,*#,*#)			-- unboxed values can depend 
+    (*1,*#,*#)			--                           on any type
+
+    (*,*#,*#)			-- unboxed values can depend on unboxed values
+;
+let Int# : *#;
+    0# : Int#;
+    1# : Int#;
+    primIntAdd# : Int# -> Int# -> Int#;
+    Int : *;
+    I# : Int# -> Int;
+    unI# : Int -> Int#;
+    add (x:Int) (y:Int) : Int = I# (primIntAdd# (unI# x) (unI# y));
+    0 : Int = I# 0#;
+    id (a:*) (x:a) : a = x;
+in  add 0 0

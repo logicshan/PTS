@@ -1,0 +1,15 @@
+PTS *:* (*,*,*);
+let
+#   include <bool.pts>
+#   include <primInteger.pts>
+#   include <misc.pts>
+#   include <exists.pts>
+#   include <list.pts>
+
+    tId (t:*) : * = t->t;
+    t : * = Exists * tId;
+    e1 : t = pack * tId Integer (id Integer);
+    e2 : t = pack * tId Bool not;
+    l : List t = cons t e1 (cons t e2 (nil t));
+    tl : List * = map t * (fstE * tId) l
+in  *

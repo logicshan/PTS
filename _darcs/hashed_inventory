@@ -1,0 +1,403 @@
+pristine:91d12259eaf2c5a8287626071277196d5b539c3adee600bb3c475f5a1da5057c
+[Initial version
+lennart@augustsson.net**20051201090234] 
+hash: 0000004978-8383b3caeb27f70fb79416fc655aea3bcdc9b2fd2896533ccba50f91e8c64eda
+[Add a parser
+lennart@augustsson.net**20051201101020] 
+hash: 0000003406-01545c7e4271ab55ddfc7a0b96f2121d851f29309a25ea9b1db821604922ad00
+[Parse multiple bindings in let.
+lennart@augustsson.net**20051201101535] 
+hash: 0000000886-68d7b91fbdc7a507b9a004cd30999ff6d589b03a75fa24d822e292229949b35a
+[Pretty print multiple lets.
+lennart@augustsson.net**20051201102554] 
+hash: 0000000849-2e53deadc772b3553a8b8e7ce952d309192e466b4ae8d3adfdafdc7724547d3c
+[Pretty print with less parens.
+lennart@augustsson.net**20051201103303] 
+hash: 0000001672-80bc8b2e50b36afb52a8b886c62d0116c7f4cbafe721ccc6f3a47176334db62a
+[Clean up a little
+lennart@augustsson.net**20051201103858] 
+hash: 0000000619-9afc4b0830142d8cd503e43d133aeb6eca417f5884c74f9dab5d95272383b015
+[Print lambda on multiple lines if needed.
+lennart@augustsson.net**20051201103924] 
+hash: 0000000578-99a59503c16c393a78a78894587f0a173474ccd07f143747c511e7bcb9156e69
+[More test files
+lennart@augustsson.net**20051201104007] 
+hash: 0000000451-e62aa1776bc56f1b10014ca89d9410b2462a65feafad5794c1d9239a097ac036
+[Parse arguments in let in a nicer way.
+lennart@augustsson.net**20051201104825] 
+hash: 0000001063-8b7d38679ba28a0d0efeb784d0af3e22305bce28f502ef2b1f0b03b977e6d07d
+[Elaborate a little.
+lennart@augustsson.net**20051201105019] 
+hash: 0000000201-cd5a858d65919418713fb42b71cab2bcbb53a5b85d8ce326a51182cd93856f58
+[Add a type checker.
+lennart@augustsson.net**20051201121029] 
+hash: 0000005873-aef832839fed0b8a71b9bbe34cf992eca161a09bfb4b4691ea57f622aa5d480b
+[Add comments.
+lennart@augustsson.net**20051201121741] 
+hash: 0000000531-4a0f122106b221ef71865ca42645eb1ea19f3680c6f73eb1a0330ce85516665f
+[Better error messages.
+lennart@augustsson.net**20051201124626] 
+hash: 0000000727-88a762a8c1ddbe5bbdde15d376c9d0ed150cc558c1f1d01f7ff99e13c64c0012
+[Allow extra ; in let
+lennart@augustsson.net**20051201124702] 
+hash: 0000000204-b188ffc7376aa2ef08b9b0cbd39e0528753578ed2997f5711c69ba7cc25e9dd7
+[switch to Haskell comments.
+lennart@augustsson.net**20051201124719] 
+hash: 0000000198-2b3d9a9e60f2ea35e6753fd2a89aeed883797ebc7b53209662f0c8f651941704
+[Add a bigger example
+lennart@augustsson.net**20051201124732] 
+hash: 0000000920-6c3a2abb68501d22fbbaf2b0b76390d08d1a637e00c512382dc37c5015afa0fc
+[Switch comments
+lennart@augustsson.net**20051201124756] 
+hash: 0000000220-38a1855c748993019c5fc0f1a20d5d8b75d3cd28ecf390bca359c85438106555
+[Show normal form.
+lennart@augustsson.net**20051201130944] 
+hash: 0000000221-4ef9ce07a2e9e128921f0b29a273bd809d58e97034670ce490cadb4153effe32
+[Add the Nat type.
+lennart@augustsson.net**20051201131905] 
+hash: 0000000838-435d3e2f2885c8ef677290282b1ad71fc9ff49c379b5e7812a2407b503935a9b
+[Make corner of the lambda cube selectable.
+lennart@augustsson.net**20051201140146] 
+hash: 0000002837-10aef6e8fc98442f2ae387e3e6eed476995f0e4a22771026828c20c0887a4e30
+[Allow applications for function arrow.
+lennart@augustsson.net**20051201140420] 
+hash: 0000000313-f630b685be013e3402bbb9458690025c74b33743a98ca246847b873f2ff6542c
+[Add list data type.
+lennart@augustsson.net**20051201142457] 
+hash: 0000001033-89466a2a8ea63173bddb07100c828198a7e896cf789ebb0abb444fb4c1afb747
+[Add *:*
+lennart@augustsson.net**20051201162739] 
+hash: 0000000803-800d2392ddcb64e0fb1722394863d5abdef87cc194e29f971b203d52eb684e44
+[Add not.
+lennart@augustsson.net**20051201162831] 
+hash: 0000000114-8cd9169fae9811d953408f65afcae3032807645dcc66ebc2f8f8ba5b764ac85b
+[Add map.
+lennart@augustsson.net**20051201162847] 
+hash: 0000000183-06c7978ea354275bdc91fb2c5c49cbe23cb673df3baba62d7bcdf5fd81a12cc6
+[Add existentials.
+lennart@augustsson.net**20051201162857] 
+hash: 0000000822-f9c09cb52a2c0ef04dcfc26e54b0f6ece0858aacaebfdc90239d716c2be6e108
+[Add split.
+lennart@augustsson.net**20051201162929] 
+hash: 0000000398-1f7fc6202242e88a7138ceb7bd307a2ef1637e748c98da3151251988f0b185db
+[Add misc.pts
+lennart@augustsson.net**20051201162939] 
+hash: 0000000098-b7830b009793138b86d27dc2e0c686f68009485cc320bca26e65a15bc9168f32
+[Add misc.pts
+lennart@augustsson.net**20051201162958] 
+hash: 0000000159-4554603754e73b3c72df8fa673add2d517ecece693c079f8dc1c032c3524ecf6
+[Add another test.
+lennart@augustsson.net**20051201163128] 
+hash: 0000000161-7c4b9ff4845fa955b268b911fd5550a4b8bd639cea3b69f0b7de1b53fd66ba0f
+[Fix typo.
+lennart@augustsson.net**20051201163152] 
+hash: 0000000173-5d9a452c15021e432c67f7e01c07667050df24aa367b035e52c0ed041eb81013
+[Refactor for dynamic PTS.
+lennart@augustsson.net**20051201182037] 
+hash: 0000002580-b4b3bd1eb07fd80bbf7987fcbf7ed91034daa7ed271b006f061f0821a0fa3f11
+[Make PTS dynamic.
+lennart@augustsson.net**20051201183027] 
+hash: 0000000662-e059d045e5fad4f09eeacd778371e96123db07a15ba18b8712f5a33569faccce
+[Add more test stuff.
+lennart@augustsson.net**20051201184901] 
+hash: 0000005592-2ec9fe0459da43015686e2f8e0dd577a7fba640419632ff8f17e51a4e370005a
+[Fix some confusion.
+lennart@augustsson.net**20051201185034] 
+hash: 0000003207-fd4bc7e47e3c1ff1d4ff4d1c32772fa020113ad2371a61b977f15199d191f32d
+[Add some documentation
+lennart@augustsson.net**20051201191023] 
+hash: 0000001942-99c35ff008b92cbf936bf8a97bf1c764e0007dcd2eb7ca13c7604f8d5bff216b
+[Add a check that the PTS is injective.
+lennart@augustsson.net**20051201202654] 
+hash: 0000001403-8c8064c1f217512d91b5676009f7a9096a44ac0cc14d8f2e68e6696f750edd3b
+[Test of higher kinds.
+lennart@augustsson.net**20051201203128] 
+hash: 0000000823-88e24e14d1f44baf4ddbc930fc53886491c7ade9c85edd30c3feffe7fe8c9eb2
+[Make sure we don't recognize just a prefix of a keyword.
+lennart@augustsson.net**20051201213311] 
+hash: 0000000630-7320a3e65a1971a6e246acbf468ec30ae3b7d601e217e95259c9e2fc3e15c5e1
+[Fix syntax
+lennart@augustsson.net**20051201225457] 
+hash: 0000000461-6d75aa4ff419b810c4db3b9f44ed4bcebfb48db6fb9edf30935e217a9084e25f
+[Add and & or.
+lennart@augustsson.net**20051201225549] 
+hash: 0000000180-a0ac39b8f3e156b352e522081bc8834ec0e4b2d918cb53a85e8ad4c5cacb05dd
+[Add primIntEq
+lennart@augustsson.net**20051201225614] 
+hash: 0000000133-dfec08fd74dc86887f8fcb646f2a98d98583cd567afc32249fb8930a8990b105
+[Update for new ops.
+lennart@augustsson.net**20051201225629] 
+hash: 0000001139-fb2fa392b9f31095067a28f982d18f8986d73fdc022f6dd98fb79a8c0f7f3d6e
+[More tests
+lennart@augustsson.net**20051201225648] 
+hash: 0000000178-b227a94f966d8d61ab53a96c570bcdcc2657c08c914f850715eef3033250bfe8
+[Associated type synonym example.
+lennart@augustsson.net**20051201225709] 
+hash: 0000003810-948586a904ceb90529f3d896002dfca2885b5ace4a895b8788eb854aaa4f1fa6
+[Munge it so it passes again.
+lennart@augustsson.net**20051201230443] 
+hash: 0000000939-0f770822c42c014e7513667ad31802c3ff48eb5f3c6b0b793ad40362349e2628
+[Pretty print symbols nicer
+lennart@augustsson.net**20051201235839] 
+hash: 0000000186-871c120865249f393a6068894c882ba546e5c49ec795b9c9c0f4466b9da07d8d
+[Fix several bugs with _
+lennart@augustsson.net**20051201235905] 
+hash: 0000001234-ac6040900a7c8bcc5c1b79e3de1de21ff0946ac1b9bf3d0682e7cdd750ad1821
+[Rearrange the environment.  Fix a bug in typechecking let.
+lennart@augustsson.net**20051202100824] 
+hash: 0000003196-a07b4d8215a5572f7bcd0ee791ba2a22cbaa97edc7dd78e5189e88e9bb8dd36a
+[It all compiles now.
+lennart@augustsson.net**20051202100934] 
+hash: 0000000597-457925e11806d7573de6917368107d2244a4f29e2f84b1144265f1d87b8dbef2
+[Add primIntAdd.
+lennart@augustsson.net**20051202101251] 
+hash: 0000000847-8eab868494479cd922a663f2611cf2ee27e7bed71ffd1708569f31e609814a36
+[Fix a parsing bug for ->
+lennart@augustsson.net**20051202102628] 
+hash: 0000000124-1a6eeeb197e058f7a63e250cd619675dea4076e25d0eaa1bb38f51ee8243a96f
+[Allow lambda sugar in let.
+lennart@augustsson.net**20051202143814] 
+hash: 0000001487-914ae9e85ca56ea62d664164f211826c5050655e82dfba1e9a9994271e03ff10
+[Use more and better normal forms.
+lennart@augustsson.net**20051202120803] 
+hash: 0000000505-c2abc7011ca479353660b4daf78c481377a648f4bf11d2e47bcc1026b30e680d
+[Add a function CAST to do arbitrary type casts.
+lennart@augustsson.net**20051202194252] 
+hash: 0000000322-0c4ec97b772d2c8ef829abe5d6ab68fb1e5fd969c71332add9a8d7e075f98f71
+[Add a strong unpack function that witnesses the element type.
+lennart@augustsson.net**20051202194320] 
+hash: 0000002969-a20c8f5a1f64115fd473c46a5feaee2c94a3080364c02a27a3d860941196fa01
+[Munge
+lennart@augustsson.net**20051202195715] 
+hash: 0000000579-17547a58af9c1ec67ef177d10550f513be402710bb5b76ed19d4342cada751a4
+[Implement the rest of the example from Cayenne.
+lennart@augustsson.net**20051202225244] 
+hash: 0000001923-61ff18f02ddce9a02a3811c649b80c074fd23ab28d1dcfbd355590f23d5f059e
+[Add a separate file for casting.
+lennart@augustsson.net**20051202225327] 
+hash: 0000000140-b77d7f18faa0f01949735a4add4a1e387db6ae02a5c84457c4fff755e8846f03
+[Use a simpler elimination rule.
+lennart@augustsson.net**20051202225348] 
+hash: 0000000460-f1d2cccd21d2d117f3fac289a847f63e2f289578b262f2a889f7680ee526c8ba
+[Add comment.
+lennart@augustsson.net**20051202232522] 
+hash: 0000000255-ce7ed67731c8422e182303170a17bdd4759feff3184397b6ee61563adf1f9fb0
+[Add new test
+lennart@augustsson.net**20051203000049] 
+hash: 0000012477-0715b2da7c5ca1d4956a485682c5aa9b37e24a5b0735e4a3c4ab8bcd85d0fbc1
+[match '
+lennart@augustsson.net**20051203000108] 
+hash: 0000000203-f61502dbbe472a207d020f89892b415152175bf5213a69d483c2a77c327e956a
+[clean up a little
+lennart@augustsson.net**20051203001631] 
+hash: 0000001205-7c224ca6fc0591ef0cd670f50fbbfc581b396be4cc7104e79d8af3bceb34b960
+[Document bodyless let.
+lennart@augustsson.net**20051203002238] 
+hash: 0000000174-3de6a163ce3d49b750985f218f02af95b9f8ef4c1c7542dae4a2e5f9d91d3993
+[Print lambda as let if in a block.
+lennart@augustsson.net**20051203005308] 
+hash: 0000000887-5b5492e274217c247dc94a59f26d53c4b93d042bae9fb7db64baa6b77b3cb7d0
+[Add TODO
+lennart@augustsson.net**20051203005524] 
+hash: 0000000197-08bf9eac4dffc93356463874b92a6555a53fad927e61c6a9efa55b376d5fa2eb
+[Move small tests
+lennart@augustsson.net**20051203005649] 
+hash: 0000000321-f88399029d0f98c319dc6d9417115255efda39b92d744ae250c9a596b1cacfad
+[Update for fakeInt change.
+lennart@augustsson.net**20051203084056] 
+hash: 0000020347-af44db5733a001b086cfb30a3db35e5859514affbea9037c422060fd94003b93
+[Rename exT
+lennart@augustsson.net**20051203084221] 
+hash: 0000000522-7979548c6bed233ed34d0806439fd6465bc152a9833d5e68079f2f0c320edaca
+[Reorganize files.
+lennart@augustsson.net**20051203085058] 
+hash: 0000025544-ffb16051bf1bad6f1cbb8893d6664c2299db9491c72bb2dba0a6ede68f1848ce
+[Allow _ and ' in identifiers.
+lennart@augustsson.net**20051203091242] 
+hash: 0000000304-e3dc3b830aa49a34de73b89a4fe7b374745cc83c9b66313ee614dbf9623cdd5a
+[Readd files that disappeeared!
+lennart@augustsson.net**20051203091630] 
+hash: 0000023617-b13db172d4e7de4ac815770b6b914f66168c9df7c2d9eae40819fbae88a88114
+[Update for name changes
+lennart@augustsson.net**20051203092044] 
+hash: 0000016543-0abd0b27dead11c1b2a5b85325bea7b8cebdb1f9654d4abe18d2af3813f0cdab
+[Add sndE.
+lennart@augustsson.net**20051203093521] 
+hash: 0000000240-06b2efbe0e7c186c22c21181e9cc1624dfead21e23f51319fd957ea9e21c3b73
+[Clean up more
+lennart@augustsson.net**20051203093540] 
+hash: 0000001332-2d67a6d63cab98b3dede3f5e061c58284711dddf5e36121419300db6e6996876
+[Depend on PTS for tests.
+lennart@augustsson.net**20051203093718] 
+hash: 0000000206-42350fd8bb8347099e646f567ea5e1d31cb408098cf8059b5160af102ab427c7
+[Update for sndE
+lennart@augustsson.net**20051203093927] 
+hash: 0000003450-5b82e55d3cac38431a62826c7e7b71671a8c6653a054bcb9720cc4fad5dea34d
+[Nicer printing of let.
+lennart@augustsson.net**20051203094314] 
+hash: 0000000509-fac61f65447f611377decc0fce8770eb5ecd197f3ee9563d9df749bd02f6fc6d
+[Update for new printing.
+lennart@augustsson.net**20051203094406] 
+hash: 0000023064-ebce269b1581689ccba13dd43a1bab78fe540a5a67e98906eb70805ffdec484b
+[Add a comment
+lennart@augustsson.net**20051203094630] 
+hash: 0000000299-1e066b20e09be538adbee4d4a86aee5608c74a56cf084d7eceb2f71e4f9a4c0a
+[Refactor () parsing.  Allow parens for \ variable.
+lennart@augustsson.net**20051203133017] 
+hash: 0000000897-ea19bcb98a084f119d72a3c69253d9fca4d835cc36d58bf9441421f836de13f3
+[Allow parens in \/
+lennart@augustsson.net**20051203133611] 
+hash: 0000000169-e8f263f50beb56dda396b84f6f672d6a63686472cec89a3303f87fc63fce3aee
+[Allow # in ids.
+lennart@augustsson.net**20051203141208] 
+hash: 0000000159-24d3193bfcde16af343acb60ab82c5845762ae79dc2470f69b7de118ea882790
+[A kind system for unboxed types.
+lennart@augustsson.net**20051203141224] 
+hash: 0000000917-6f0959102f3a71d713baaa42b7962b3b7f2e265babb2e08b1e49e8b60372f34a
+[Add sum type.
+lennart@augustsson.net**20051203223406] 
+hash: 0000000427-32ddeeea660d8823b488326ad846f36fd19e77bdc3d0e353550cfa32e7775b9e
+[Move code around.
+lennart@augustsson.net**20051203223456] 
+hash: 0000001433-4ab1a7c08103d36ecad700dbe8063bc9d9acc91f7e6286b681098200d0b71910
+[Add a Con constructor to Expr for constants during evaluation.
+lennart@augustsson.net**20051203225116] 
+hash: 0000001017-c6d54188232996ff8608eccf9552fef1ae3d3baec8ba8610d126af5de42f8938
+[Add a simple evaluator that can use delta rules as well.
+lennart@augustsson.net**20051203233747] 
+hash: 0000004741-8114a589422bc9f94156e3ca126217a70a22def7a77750d567839b92acbb1c08
+[Some comments.
+lennart@augustsson.net**20051204002024] 
+hash: 0000000460-c701b61c818e290a47bb7a9b4b324e6193c3dadbaba13edd307c203e21476962
+[Simplify type equality conversion.
+lennart@augustsson.net**20051204003000] 
+hash: 0000002139-43d535425594c9f65c34dfb670c7666fc54ce9c04fe5a58c49c4574961ed19cc
+[Add script for cpp.
+lennart@augustsson.net**20051204192505] 
+hash: 0000000134-cccf909b046776cc220f343474836741bfcc5484e1ba03bd8c6d9683162edf38
+[Print more.
+lennart@augustsson.net**20051204195010] 
+hash: 0000000328-a25a36c57fda44b55d5621427c2150818928d48a3a6932e97659dea3ee0dbfc7
+[Better error messages.
+lennart@augustsson.net**20051204195052] 
+hash: 0000000558-5a228472c57fedf13c904d69a76c097ca1a195d9ba8de692df7bdbe1e8478e69
+[Simplify EqType.
+lennart@augustsson.net**20051204195102] 
+hash: 0000001728-ae4f9713132ceb68ab1bcd8ee25581962b5e817c22b84815c425a2f0ab12acd7
+[Add transitivity.
+lennart@augustsson.net**20051204202614] 
+hash: 0000000187-de558cca4cee2edf2940be95652b75da8a20f63e46c52ed7b2395f18c80c7e76
+[Add comment.
+lennart@augustsson.net**20051204202750] 
+hash: 0000000126-b4578a12653bd131198d09f7c96d598feff46b90824b97c61b32bd5bf139512e
+[Update for added transitivity.
+lennart@augustsson.net**20051204202825] 
+hash: 0000000282-516843f387eebb10dd44a9067f86c832d2daf3cc659c9179dc82b68631d60db0
+[Update for more primitives, like fix.
+lennart@augustsson.net**20051204203148] 
+hash: 0000002586-d4d9ac5f1f1fa563dfcdbcb09deb133e683dc4aadbdf2413c72831698a29c299
+[Handle wrong number of args to primitives.
+lennart@augustsson.net**20051204203246] 
+hash: 0000000334-39713281db59e360cb9f6dcc17cdcb835d30e81216d1193b9e8adf7dfe53eef0
+[No trace
+lennart@augustsson.net**20051204203512] 
+hash: 0000000111-b7b6cd53282105a85ea75ed8b4f66510e7dbabdce149ff08e1dedafd8b282a93
+[Add recursion test.
+lennart@augustsson.net**20051204203721] 
+hash: 0000003536-b37017cb3d1f2e2bf87afc636b252ccc15493a0f00b7bb58dc88b08f62258ea2
+[Move fix to lib.
+lennart@augustsson.net**20051204203951] 
+hash: 0000000210-7cdf39670556d054a4869d6059ae64d1a226e0996726555b4609519975460c10
+[Fix typo.
+lennart@augustsson.net**20051204204025] 
+hash: 0000000124-b45defa21c6cb6ea982fd6058d6f3f3d5e73501b47b128f8ac796c69603cb2b4
+[Add unit.pts
+lennart@augustsson.net**20051204204701] 
+hash: 0000000490-c9a705f50908e903071e093290cdcbcb8c4b9db90494e554e18ef5304a9c8543
+[Rename Int to Integer and add some more primitives.
+lennart@augustsson.net**20051204210045] 
+hash: 0000012289-1a01c571a3d4a73cdbe669ca3dae3b89de1ab1661cbbef0cc557e6bf1e65cebf
+[Do const subst inside let.
+lennart@augustsson.net**20051205102647] 
+hash: 0000000183-e26b7cae2a62d6070037ca57c25a03cd75d4a94800d278841bf4b9f50e46a60c
+[Handle cast at runtime
+lennart@augustsson.net**20051205102709] 
+hash: 0000000277-a6487946913cb5d3d8d4051eab7b3fe1bcceb0a780bd86a955e03b64e92f661d
+[Fix bug in cType
+lennart@augustsson.net**20051205102726] 
+hash: 0000000187-aaa395ae7614dcac9062160fac9845cc9354f597ce6512678cfa814cd8358cd9
+[Fix bug in cast.
+lennart@augustsson.net**20051205102837] 
+hash: 0000000165-0d58de83ed60e22392920ba9bade825ed6f6859e110272a11a26827824e8602f
+[Change existtest to not return a list a types.
+lennart@augustsson.net**20051205103058] 
+hash: 0000001124-8d56a5e78bb073521d3df2bf8af444eb0ae2f3195b856af16de6930ab56fea5f
+[Evalute the original expression, not the normal form.
+lennart@augustsson.net**20051205103153] 
+hash: 0000000155-36135cc83f693107433e2a466d05dfa1439aabeca217be3b48df53802786735a
+[Add another example from Simon.
+lennart@augustsson.net**20051205150448] 
+hash: 0000001947-3c63f1216cb74cc2714f99bb5ab595528cee68ce6be5ee2ee54115446b98fd89
+[Change to make it easier to update reference solutions.
+lennart@augustsson.net**20051205150733] 
+hash: 0000000463-960033ebf910b341e1ece5a01e442ec4a76a2aba5f5b069d80270f07cf2cb9cd
+[Add a delimiter before final result.
+lennart@augustsson.net**20051205150751] 
+hash: 0000000274-7c860cffeb32a6ed8bc23a62ff015e713fc23f83fa2fb41f8db55b7ae867384c
+[Extend example
+lennart@augustsson.net**20051205152017] 
+hash: 0000000622-31139175a51f6a608d90a8bc8e3e6fa5dda6d526e6f03327af2db329b2f34701
+[Add Char type to evaluator
+lennart@augustsson.net**20051205152517] 
+hash: 0000000964-782faf271be917ba599ab488651a3f3d0922bb4dd12a818e6ae31aef30dae840
+[Simplify
+lennart@augustsson.net**20051205162248] 
+hash: 0000000797-7575204c19f68a854c8a6fbb46d8ff1832719ce193706188c426d722835ffa3f
+[Comments
+lennart@augustsson.net**20051205183943] 
+hash: 0000001111-87c86e8cfa7ae48dc33d81ff1bac78c85497ceeb7edbd6b034182fe5d859ec7d
+[Complicate example.
+lennart@augustsson.net**20051205191228] 
+hash: 0000001832-f4416864ca17d661ef9446d76e201f72faf29fb8840b3befba6736ba4bef529c
+[Fix typo
+lennart@augustsson.net**20051206184841] 
+hash: 0000000146-2247eb251a6928a99e37c59fe38aa1e7b62981fae1c0b533bbae9c2c97f7759e
+[Add an empty type.
+lennart@augustsson.net**20051214023323] 
+hash: 0000000320-9c7a62baf59d0b5e0cd2067fc688c7009b898437d0411481565cefbb5499187c
+[Fix typo.
+lennart@augustsson.net**20051227182338] 
+hash: 0000000195-5f0286304728c69a2d154e77c15decd192ff5f6059d37bd63b3f7119625d5191
+[Fix typo
+lennart@augustsson.net**20051227182429] 
+hash: 0000000210-9cb569f503fcfaab4bdbef23477dd74621a938dfd567188fbbe3f2efbbc3e0ec
+[Start of a change to separate checked an unchecked expressions.
+lennart@augustsson.net**20060104203032] 
+hash: 0000005149-27b0c8d8488c0b58e6a3d06f97fb8fa60dd3e620aeefe49c68d01d099116f825
+[Complete change that split unchecked and checked expressions.
+lennart@augustsson.net**20060104230303] 
+hash: 0000006067-361066904d7fac02cc9ae5fb674b870714b58e00dbbcff32a612dd631a1b2a28
+[Revert how PTSVariant is done.
+lennart@augustsson.net**20060104234504] 
+hash: 0000001430-d83b47031e04aa96f648c2283382cccffd9d17260eef4f1936e6a951ea7a52fe
+[Let the type checker return a converted Term.
+lennart@augustsson.net**20060107150434] 
+hash: 0000003433-54e061a2c1545ad51bcd9a29f35cf3d7ed28082293452469864a9e360935f746
+[Remove unused code.
+lennart@augustsson.net**20060107150603] 
+hash: 0000000615-b8ba7664033ef71bf9d8151467dc151f792b8381fd746c600351993a464feb58
+[Add a function make bound vars unique.
+lennart@augustsson.net**20060107231032] 
+hash: 0000000800-2c08ff444d374550fac0ab254bfc6c550ddd21259b7918cc365ee360edcc701d
+[Clean up use of Env record.
+lennart@augustsson.net**20060107231114] 
+hash: 0000000715-90b49b8c4999614ef89f4257d777bff366eca25a7e16c89531f9b718bcdaf887
+[Fix comment
+lennart@augustsson.net**20060107231138] 
+hash: 0000000149-0d5c8a9a2fbc48b1b38d46baac82dafb826c65489c679341736c16985030e6da
+[Fold line.
+lennart@augustsson.net**20060107231149] 
+hash: 0000000463-a32f97092c75965223f9b1bfda13e49aaf29f636789dfbdd1cd9ddfd9814782b
+[Make cpp behave by having # first on the line.
+lennart@augustsson.net**20060720114039] 
+hash: 0000001559-570208cf6667eadf93f1ecfc55b8c1cdc1f552c66d31b93816657609f8d1e118

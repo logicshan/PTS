@@ -1,0 +1,12 @@
+Nat : * = \/ a:* . (a->a) -> a -> a;
+zero : Nat = /\ a:* . \ s:a->a . \z:a . z;
+succ (n:Nat) : Nat = /\ a:* . \ s:a->a . \z:a . s (n a s z);
+add (x:Nat) (y:Nat) : Nat = x Nat (\ r : Nat . succ r) y;
+isZero (n:Nat) : Bool = n Bool (\ a:Bool . False) True;
+pred (n:Nat) : Nat = fst Nat Bool (
+	n (Pair Nat Bool)
+	  (\ nb:Pair Nat Bool . pair Nat Bool (nb Nat (\ n:Nat . \ b:Bool . if Nat b (succ n) zero)) True)
+	  (pair Nat Bool zero False));
+one : Nat = succ zero;
+two : Nat = succ one;
+

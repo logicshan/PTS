@@ -1,0 +1,26 @@
+--PTS *:*1 *1:*2				-- 3 levels
+--    (*,*,*) (*1,*,*) (*1,*1,*1)		-- usual Fw
+--    (*2,*,*) (*2,*1,*1) (*1,*2,*2);	-- allow quantification over higher level in values and types
+--PTS *:*BOX (*,*,*) (*BOX,*,*) (*BOX,*BOX,*BOX) (*,*BOX,*BOX);
+PTS *:* (*,*,*);
+let
+#   include "atsyn.pts"
+
+    singleton (c:*) (dictC:ClassCollects c) (e:sel_Elem c dictC) : c =
+	let Elem : * = sel_Elem c dictC;
+	    dictB : Class_BareCollects c Elem = sel_dict_BareCollects c dictC;
+	    empty : c = sel_empty c Elem dictB;
+	    insert : Elem -> c -> c = sel_insert c Elem dictB
+	in  insert e empty;
+
+    LI : * = List Integer;
+
+    myDict : ClassCollects LI = instance_Collects_List Integer instance_Eq_Integer;
+
+    oneListInteger : LI = singleton LI myDict 1;
+
+    eqInteger : EqType Integer Integer = reflEqType Integer;
+
+    s : Integer = sumColl LI myDict eqInteger oneListInteger;
+
+in  s

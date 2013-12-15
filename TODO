@@ -1,0 +1,3 @@
+Treat let binding in a sensible way in the type checker.
+
+Rewrite type checker using Gilles Barthe's algorithm.

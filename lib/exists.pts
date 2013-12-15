@@ -1,0 +1,4 @@
+Exists (a:*) (P:a->*) : * = \/ r:* . (\/ x:a . (P x -> r)) -> r;
+pack (a:*) (P:a->*) (x : a) (q : P x) : Exists a P = /\ r:* . \ f : (\/ y:a . (P y -> r)) . f x q;
+unpack (a:*) (P:a->*) (r:*) (f : (x:a)->P x->r) (e : Exists a P) : r = e r f;
+fstE (a:*) (P:a->*) (e : Exists a P) : a = unpack a P a (/\ y:a . \ q:P y . y) e;

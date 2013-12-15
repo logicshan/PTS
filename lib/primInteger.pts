@@ -1,0 +1,10 @@
+Integer:*;
+0:Integer;
+1:Integer;
+2:Integer;
+3:Integer;
+primIntegerAdd:Integer->Integer->Integer;
+primIntegerSub:Integer->Integer->Integer;
+primIntegerMul:Integer->Integer->Integer;
+primIntegerDiv:Integer->Integer->Integer;
+primIntegerEq:Integer->Integer->Bool;

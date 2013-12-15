@@ -1,0 +1,3 @@
+-- An ugly hack that together with another ugly hack in
+-- reducer allows type conversion.
+CAST (a:*) (b:*) : a->b;

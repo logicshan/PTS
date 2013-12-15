@@ -1,0 +1,2 @@
+Void : * = \/ r:* . r;
+void (r:*) (v:Void) : r = v r;
